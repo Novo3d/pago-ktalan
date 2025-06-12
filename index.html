@@ -11,8 +11,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 2rem 0;
             color: #24292e;
         }
         .container {
@@ -63,12 +64,6 @@
         .copy-btn:active {
             transform: scale(0.95);
         }
-        .copied-feedback {
-            display: none;
-            color: #22863a;
-            font-weight: bold;
-            margin-left: 10px;
-        }
     </style>
 </head>
 <body>
@@ -77,55 +72,50 @@
     <h1>📄 Datos para Transferencia</h1>
     
     <div class="info-item">
-        <div>
-            <strong>Nombre:</strong>
-            <span id="nombre">Asesoría y capacitaciones Ktalan spa</span>
-        </div>
+        <div><strong>Nombre:</strong> <span id="nombre">Asesoría y capacitaciones Ktalan spa</span></div>
         <button class="copy-btn" onclick="copyToClipboard('nombre', this)">Copiar</button>
     </div>
-
     <div class="info-item">
-        <div>
-            <strong>RUT:</strong>
-            <span id="rut">78.152.536-7</span>
-        </div>
+        <div><strong>RUT:</strong> <span id="rut">78.152.536-7</span></div>
         <button class="copy-btn" onclick="copyToClipboard('rut', this)">Copiar</button>
     </div>
-
     <div class="info-item">
-        <div>
-            <strong>Banco:</strong>
-            <span id="banco">Banco Santander</span>
-        </div>
+        <div><strong>Banco:</strong> <span id="banco">Banco Santander</span></div>
         <button class="copy-btn" onclick="copyToClipboard('banco', this)">Copiar</button>
     </div>
-
     <div class="info-item">
-        <div>
-            <strong>Tipo de Cuenta:</strong>
-            <span id="tipoCuenta">Cuenta Corriente</span>
-        </div>
+        <div><strong>Tipo de Cuenta:</strong> <span id="tipoCuenta">Cuenta Corriente</span></div>
         <button class="copy-btn" onclick="copyToClipboard('tipoCuenta', this)">Copiar</button>
     </div>
-
     <div class="info-item">
-        <div>
-            <strong>N° de Cuenta:</strong>
-            <span id="nCuenta">97990760</span>
-        </div>
+        <div><strong>N° de Cuenta:</strong> <span id="nCuenta">97990760</span></div>
         <button class="copy-btn" onclick="copyToClipboard('nCuenta', this)">Copiar</button>
     </div>
-    
     <div class="info-item">
-        <div>
-            <strong>Email:</strong>
-            <span id="email">info.novo3d@gmail.com</span>
-        </div>
+        <div><strong>Email:</strong> <span id="email">info.novo3d@gmail.com</span></div>
         <button class="copy-btn" onclick="copyToClipboard('email', this)">Copiar</button>
     </div>
-</div>
+
+    <div style="border-top: 2px solid #e1e4e8; margin-top: 2rem; padding-top: 2rem;">
+        <h2 style="text-align: center; color: #0366d6; margin-top: 0; margin-bottom: 1.5rem; font-size: 1.5rem;">Datos Consolidados</h2>
+        <div id="datos-completos" style="background-color: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: 1rem; font-size: 1rem; line-height: 1.7;">
+            <strong>Nombre:</strong> Asesoría y Capacitaciones Ktalan Spa<br>
+            <strong>RUT:</strong> 78.152.536-7<br>
+            <strong>Banco:</strong> Banco Santander<br>
+            <strong>Tipo de Cuenta:</strong> Cuenta Corriente<br>
+            <strong>N° de Cuenta:</strong> 97990760<br>
+            <strong>Email:</strong> info.novo3d@gmail.com
+        </div>
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <button onclick="copiarTodo()" style="background-color: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: background-color 0.2s, transform 0.1s;" id="botonCopiarTodo">
+                Copiar Todo
+            </button>
+        </div>
+    </div>
+    </div>
 
 <script>
+    // Función para copiar datos individuales
     function copyToClipboard(elementId, buttonElement) {
         const text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(() => {
@@ -139,6 +129,29 @@
             }, 2000);
         }).catch(err => {
             console.error('Error al copiar: ', err);
+        });
+    }
+
+    // Función para copiar todos los datos juntos
+    function copiarTodo() {
+        const contenedor = document.getElementById('datos-completos');
+        const clon = contenedor.cloneNode(true);
+        clon.querySelectorAll('br').forEach(br => br.parentNode.replaceChild(document.createTextNode('\n'), br));
+        const textoACopiar = clon.innerText;
+        
+        navigator.clipboard.writeText(textoACopiar).then(() => {
+            const boton = document.getElementById('botonCopiarTodo');
+            const textoOriginal = boton.innerText;
+            boton.innerText = '¡Copiado!';
+            boton.style.backgroundColor = '#218838';
+            
+            setTimeout(() => {
+                boton.innerText = textoOriginal;
+                boton.style.backgroundColor = '#28a745';
+            }, 2000);
+        }).catch(err => {
+            console.error('Error al copiar los datos: ', err);
+            alert("Hubo un error al intentar copiar los datos.");
         });
     }
 </script>
