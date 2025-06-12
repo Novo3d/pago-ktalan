@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Transferencia - Asesoría y capacitaciones Ktalan spa</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f6f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #24292e;
+        }
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #d1d5da;
+            border-radius: 10px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #0366d6;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e1e4e8;
+            font-size: 1rem;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .info-item strong {
+            color: #586069;
+        }
+        .info-item span {
+            font-family: "SF Mono", "Consolas", "Liberation Mono", Menlo, Courier, monospace;
+        }
+        .copy-btn {
+            background-color: #0366d6;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .copied-feedback {
+            display: none;
+            color: #22863a;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📄 Datos para Transferencia</h1>
+    
+    <div class="info-item">
+        <div>
+            <strong>Nombre:</strong>
+            <span id="nombre">Asesoría y capacitaciones Ktalan spa</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('nombre', this)">Copiar</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <strong>RUT:</strong>
+            <span id="rut">78.152.536-7</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('rut', this)">Copiar</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <strong>Banco:</strong>
+            <span id="banco">Banco Santander</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('banco', this)">Copiar</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <strong>Tipo de Cuenta:</strong>
+            <span id="tipoCuenta">Cuenta Corriente</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('tipoCuenta', this)">Copiar</button>
+    </div>
+
+    <div class="info-item">
+        <div>
+            <strong>N° de Cuenta:</strong>
+            <span id="nCuenta">97990760</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('nCuenta', this)">Copiar</button>
+    </div>
+    
+    <div class="info-item">
+        <div>
+            <strong>Email:</strong>
+            <span id="email">info.novo3d@gmail.com</span>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('email', this)">Copiar</button>
+    </div>
+</div>
+
+<script>
+    function copyToClipboard(elementId, buttonElement) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = buttonElement.innerText;
+            buttonElement.innerText = '¡Copiado!';
+            buttonElement.style.backgroundColor = '#22863a';
+            
+            setTimeout(() => {
+                buttonElement.innerText = originalText;
+                buttonElement.style.backgroundColor = '#0366d6';
+            }, 2000);
+        }).catch(err => {
+            console.error('Error al copiar: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
